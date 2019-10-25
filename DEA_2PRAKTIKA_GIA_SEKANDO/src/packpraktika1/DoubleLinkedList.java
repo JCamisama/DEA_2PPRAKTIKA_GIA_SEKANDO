@@ -286,4 +286,8 @@ public abstract class DoubleLinkedList<T extends Comparable<T>> implements ListA
 		return "SimpleLinkedList " + result + "]";
 	}
 
+	public void zerrendaHustu(){ //FROGAK EGITEKO ERABILIKO DA BAKARRIK
+		
+		this.first = null;
+	}
 }

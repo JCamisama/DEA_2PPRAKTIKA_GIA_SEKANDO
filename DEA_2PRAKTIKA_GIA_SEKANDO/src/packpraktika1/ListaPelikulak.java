@@ -24,7 +24,7 @@ public class ListaPelikulak {
 		return this.zerrenda.iterator();
 	}
 	
-	public void gehituPelikula(Pelikula pFilma){
+	public void gehituPelikula(Pelikula pFilma){//********ALDATU EGIN DA
 		
 		//Aurre-Baldintza:	----------------------------------------------------------
 		//Post-Baldinta: 	Pelikula ez bada null eta ez badago zerrendan, gehituko da.
@@ -32,16 +32,24 @@ public class ListaPelikulak {
 		
 		if( pFilma != null && !this.badago(pFilma) ){
 			
-			this.zerrenda.add(pFilma);
+			if( this.zerrenda instanceof OrderedDoubleLinkedList){
+				
+				((OrderedDoubleLinkedList) this.zerrenda).add(pFilma);	
+			}
+			
+			else{
+				
+				((UnorderedDoubleLinkedList) this.zerrenda).addToRear(pFilma);
+			}
 		}
 	}
 	
-	public void ezabatuFilma(Pelikula pFilma){
+	public void ezabatuFilma(Pelikula pFilma){//********ALDATU EGIN DA
 		
 		//Aurre-Baldintza:	----------------------------------------------------------
 		//Post-Baldinta: 	Pelikula ez bada null eta pelikulen zerrendan  badago, zerrendatik ezabatuko da.
 		//Kostua:			O(m); Non m pelikulen kopurua da.
-		
+	
 		this.zerrenda.remove(pFilma);
 	}
 	
@@ -112,7 +120,15 @@ public class ListaPelikulak {
 		//Post-Baldinta: 	Pelikula ez bada null eta ez badago zerrendan, gehituko da.
 		//Kostua:			O(1);
 		
-		this.zerrenda.add(pPelikula);
+		if( this.zerrenda instanceof OrderedDoubleLinkedList){
+			
+			((OrderedDoubleLinkedList) this.zerrenda).add(pPelikula);	
+		}
+		
+		else{
+			
+			((UnorderedDoubleLinkedList) this.zerrenda).addToRear(pPelikula);
+		}
 	}
 	
 	public void ezabatuPelikulaHauetatik(Aktorea pAktoreIzena){//METODO BERRIA, JUNIT BEHAR DU
@@ -142,7 +158,7 @@ public class ListaPelikulak {
 	
 	public void garbitu(){ //Frogak egiteko bakarrik
 		
-		this.zerrenda.clear();
+		this.zerrenda.zerrendaHustu();;
 	}
 	
 

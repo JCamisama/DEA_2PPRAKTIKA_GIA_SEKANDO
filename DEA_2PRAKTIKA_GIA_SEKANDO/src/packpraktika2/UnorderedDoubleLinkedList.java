@@ -103,10 +103,66 @@ public class UnorderedDoubleLinkedList<T extends Comparable<T>> extends DoubleLi
 			
 		}
 
-	public T remove(T elem) {
+	public T remove(T pElem) {
+
+		//Aurre-Baldintza:	---
+		//Post-Baldinta: 	Elementua badago, zerrendatik ezabatuko da eta datua bueltatuko da, bestela null.
+		//Kostua:			O(n);
 		
-		//Iteradorearen bidez
-		Iterator<T>
-		return null;
+		/* Proba kasuak:
+		  
+		 	- 1. Zerrenda hutsa izatea
+		 	- 2. Elementua zerrendan dago eta elementu bakarreko zerrenda denean.
+		 	- 3. Elementua zerrendan ez dago eta elementu bakarreko zerrenda denean.
+		 	- 4. Elementua zerrendan dago eta elementu anitzeko zerrenda denean: Lehenengoa denean.
+		 	- 5. Elementua zerrendan dago eta elementu anitzeko zerrenda denean: Erdialdean dagoenean.
+		 	- 6. Elementua zerrendan dago eta elementu anitzeko zerrenda denean: Amaieran dagoenean.
+		 	- 7. Elementua zerrendan ez dagoenean eta elementu anitzeko zerrenda denean.
+		 */
+		
+		Node unekoa	= super.first; //Bere atributuak ama klasean definituta daudenez, "super" erreferentzia erabili da.
+		Comparable ezabatutakoa = null;
+		
+		if(unekoa != null){
+			
+			//Unekoaren aurrekoa eta hurrengoen erakusleak egiten, ulermena errazteko
+			Node aurrekoa	= unekoa.prev;
+			Node hurrengoa	= unekoa.next;
+			
+			//Elementu bakarreko zerrenda denean
+			if(unekoa == aurrekoa && unekoa.data.equals(pElem)){
+				
+				ezabatutakoa	= unekoa.data;
+				this.first		= null;		//Zerrenda hutsik geratuko da
+				super.count--;            	//Elementuen kopurua txikitu egin da.
+			}
+			
+			else { //Edo ez da elementu bakarrekoa edo ez dago zerrendan
+				
+				boolean	topatua		= false;
+				int		kontatutakoPosizio	= 0; //Zerrenda zirkularrean behin eta berriro ez zeharkatzeko
+				
+				while( kontatutakoPosizio < super.count && !topatua){
+					
+					if(unekoa.data.equals(pElem)){ //Aurkituta izan da.
+						
+						ezabatutakoa	= unekoa.data;
+						topatua			= true;
+						aurrekoa.next	= hurrengoa;
+						hurrengoa.prev	= aurrekoa;
+						super.count--;            //Elementuen kopurua txikitu egin da.
+					}
+					
+					else{ //Hurrengoa aztertu ahal izateko
+						
+						aurrekoa	= aurrekoa.next;
+						unekoa		= unekoa.next;
+						hurrengoa	= hurrengoa.next;
+					}
+				}
+			}
+		}
+		
+		return (T) ezabatutakoa;
 	}
 }

@@ -224,10 +224,10 @@ public abstract class DoubleLinkedList<T extends Comparable<T>> implements ListA
 			}
 			   
 			aurrekoa = unekoa ;
-			T objetua = unekoa.data ;
+			T objektua = unekoa.data ;
 			unekoa = unekoa.next ;
 			indizea++;
-			return objetua ;
+			return objektua ;
 				   
 		}
 
