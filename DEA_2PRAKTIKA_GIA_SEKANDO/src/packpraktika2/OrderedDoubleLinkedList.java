@@ -77,58 +77,45 @@ public class OrderedDoubleLinkedList<T extends Comparable<T>> extends DoubleLink
 		
 			
 	    OrderedDoubleLinkedList<T> linkedListBerria = new OrderedDoubleLinkedList();
+	    OrderedDoubleLinkedList<T> zerrendaLag		= (OrderedDoubleLinkedList<T>) pZerrenda; //Do
 		
 	    int kontX = this.count; //this.count-aren laguntzaile bat
-	    int kontY = pZerrenda.count; //pZerrenda.count-aren laguntzaile bat	 	    
+	    int kontY = zerrendaLag.count; //zerrendaLag.count-aren laguntzaile bat	 	    
 	    
 	    while (kontX !=0 && kontY !=0) {
 
-		if (this.first.data.equals(pZerrenda.first.data)) { //elementu biak berdinak badira, pZerrendako elemntua sartuko da lista berrian eta lista biak desplazatuko dira
-	    		
-	    		linkedListBerria.add(pZerrenda.first.data);
-	    		
-	    		pZerrenda.first.next.prev = pZerrenda.first.prev;	        	
-	        	pZerrenda.first = pZerrenda.first.next;	             
-	            	kontY--;            
-	        	
-	        	this.first.next.prev = this.first.prev;	      	
-	        	this.first = this.first.next;	        	
-	            	kontX--;	    		
-	    		
-	    	}
 	    	
-	        else if (this.first.data.toString().compareToIgnoreCase(pZerrenda.first.data.toString()) <= 0 ) { //this.first-ren data string bezela, pZerrendarena baino handiagoa bada, orduan pZerrendaren lehenengo elementua sartu egingo da gure zerrenda berrian
+	        if (this.first.data.compareTo(zerrendaLag.first.data) <= 0 ) { //this.first-ren data string bezela, zerrendaLagrena baino handiagoa bada, orduan zerrendaLagren lehenengo elementua sartu egingo da gure zerrenda berrian
 	        	
-	        	linkedListBerria.add(pZerrenda.first.data);
-	        	
-	        	pZerrenda.first.next.prev = pZerrenda.first.prev;	        	
-	        	pZerrenda.first = pZerrenda.first.next;
-	             
-	            	kontY--;
-	            
-	        } 
-	        
-	        else { 
-	        	
+
 	        	linkedListBerria.add(this.first.data);
 	        	
 	        	this.first.next.prev = this.first.prev;	      	
 	        	this.first = this.first.next;	        	
 	        	
-	            	kontX--;	        	
-	            
+	            	kontX--;
+	        } 
+	        
+	        else { 
+	        	
+	        	linkedListBerria.add(zerrendaLag.first.data);
+	        	
+	        	zerrendaLag.first.next.prev = zerrendaLag.first.prev;	        	
+	        	zerrendaLag.first = zerrendaLag.first.next;
+	             
+	            	kontY--;          
 	        }  	        
 	        
 	    }
 	    
-	    if (kontX == 0){ //this zerrenda hutsa bada, orduan pZerrendan zerrendan dagoen objektu guztiak linkedListBerria-n gehitu behar dira
+	    if (kontX == 0){ //this zerrenda hutsa bada, orduan zerrendaLagn zerrendan dagoen objektu guztiak linkedListBerria-n gehitu behar dira
 	    	
-	    	linkedListBerria.first.prev.next = pZerrenda.first;
-	    	pZerrenda.first.prev = linkedListBerria.first.prev;	    	
+	    	linkedListBerria.first.prev.next = zerrendaLag.first;
+	    	zerrendaLag.first.prev = linkedListBerria.first.prev;	    	
 	    	
 	    }
 	    
-	    if (kontY == 0) { //pZerrenda zerrenda hutsa bada, orduan this zerrendan dagoen objektu guztiak linkedListBerria-n gehitu behar dira
+	    if (kontY == 0) { //zerrendaLag zerrenda hutsa bada, orduan this zerrendan dagoen objektu guztiak linkedListBerria-n gehitu behar dira
 	    	
 	    	linkedListBerria.first.prev.next = this.first;
 	    	this.first.prev = linkedListBerria.first.prev;	

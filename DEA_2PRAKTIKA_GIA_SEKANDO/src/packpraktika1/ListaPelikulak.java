@@ -1,15 +1,16 @@
 package packpraktika1;
 
+import packpraktika2.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ListaPelikulak {
 
-	private ArrayList<Pelikula> zerrenda;
+	private DoubleLinkedList<Pelikula> zerrenda;
 	
 	public ListaPelikulak(){
 		
-		this.zerrenda = new ArrayList<Pelikula>();
+		this.zerrenda = new UnorderedDoubleLinkedList<Pelikula>();
 	}
 	
 	
@@ -73,7 +74,7 @@ public class ListaPelikulak {
 			
 			egungoPelikula = itr.next();
 			
-			if (egungoPelikula.bilatzekoPelikula(pFilma)) {
+			if (egungoPelikula.equals(pFilma)) {
 				
 				topatua = true;	
 				System.out.println("Zure pelikula listan dago");								

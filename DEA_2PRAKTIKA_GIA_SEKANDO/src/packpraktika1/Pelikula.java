@@ -1,7 +1,8 @@
 package packpraktika1;
+import packpraktika2.*;
 
 
-public class Pelikula{
+public class Pelikula implements Comparable<Pelikula> {
 	
 	private String			izena;
 	private int				diruBilketa;
@@ -60,7 +61,7 @@ public class Pelikula{
 		return this.izena;
 	}
 	
-	public boolean bilatzekoPelikula(String pFilma) {
+	public boolean equals(String pFilma) { //********ALDATU EGIN DA
 		
 		//Aurre-Baldintza:	Letra larriak eta xeheak ezberdinduko dira.
 		//Post-Baldintza:	pFilma izena pelikula honen izenaren berdina bada True, bestela False.
@@ -77,5 +78,10 @@ public class Pelikula{
 	public void diruSarreraTotalakInprimatu(){//METODO BERRIA, JUNIT BEHAR DU
 		
 		System.out.println("\nDiru sarrera totalak: "+ this.diruBilketa+" €\n");
+	}
+	
+	public int compareTo(Pelikula pFilma){ //********ALDATU EGIN DA
+		
+		return this.izena.compareToIgnoreCase(pFilma.izena);
 	}
 }

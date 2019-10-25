@@ -196,7 +196,7 @@ public abstract class DoubleLinkedList<T extends Comparable<T>> implements ListA
 		ListIterator ( ) {
 
 			unekoa = first;
-			aurrekoa = null;
+			aurrekoa = unekoa.prev;
 			indizea = 0 ;
 		}
 

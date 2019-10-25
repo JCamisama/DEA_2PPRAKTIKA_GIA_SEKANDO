@@ -104,7 +104,9 @@ public class UnorderedDoubleLinkedList<T extends Comparable<T>> extends DoubleLi
 		}
 
 	public T remove(T elem) {
-		// TODO Auto-generated method stub
+		
+		//Iteradorearen bidez
+		Iterator<T>
 		return null;
 	}
 }
