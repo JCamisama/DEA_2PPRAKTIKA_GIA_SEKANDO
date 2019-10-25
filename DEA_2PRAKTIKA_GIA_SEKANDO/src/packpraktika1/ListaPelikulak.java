@@ -162,4 +162,10 @@ public class ListaPelikulak {
 	}
 	
 
+	/**********Metodo arriskutsu bat***********************/
+	
+	public void ordenatuBihurtu(){ //CASTING HAU FROGAK EGITEKO BAKARRIK ERABILIKO DUGU.
+		
+		this.zerrenda = (OrderedDoubleLinkedList) this.zerrenda;
+	}
 }
